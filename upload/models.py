@@ -9,3 +9,6 @@ class Upload(models.Model):
     capture_location = models.CharField(max_length=200)
     upload_date = models.DateTimeField(auto_now_add=True)
     torchat_id = models.CharField(max_length=16)
+
+    def __str__(self):
+        return self.description[:50]
