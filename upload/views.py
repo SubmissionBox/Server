@@ -1,3 +1,7 @@
 from django.shortcuts import render
 
-# Create your views here.
+from .models import Upload
+
+def review(request):
+    upload = Upload.objects.all()
+    return render(request, 'review.html', {'upload' : upload})

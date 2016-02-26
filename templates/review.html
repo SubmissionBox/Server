@@ -1,0 +1,8 @@
+{% for item in upload %}
+<img src="../files/{{ item.file }}" width="100px"/>
+{{ item.description }}
+{{ item.capture_date }}
+{{ item.capture_location }}
+{{ item.upload_date }}
+{{ item.torchat_id }}
+{% endfor %}
