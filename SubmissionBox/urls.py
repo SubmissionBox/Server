@@ -26,6 +26,7 @@ router.register(r'uploads', views.UploadViewSet)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^submit/', views.submit),
     url(r'^review/', views.review),
     url(r'^api/', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
