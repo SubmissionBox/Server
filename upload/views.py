@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.template import RequestContext
 from rest_framework import viewsets
+from rest_framework.parsers import FileUploadParser, FormParser, JSONParser, MultiPartParser
 import datetime
 
 from .serializers import UploadSerializer
@@ -15,10 +16,13 @@ def review(request):
     return render(request, 'review.html', {'upload' : upload})
 
 def submit(request):
+    print(request)
     if request.method == 'POST':
         form = UploadForm(request.POST, request.FILES)
         if form.is_valid():
+            print(request)
             for afile in request.FILES.getlist('docfile'):
+                print(afile)
                 newdoc = Upload(file=afile, capture_date=datetime.datetime.now())
                 newdoc.save()
 
@@ -38,5 +42,7 @@ def submit(request):
     )
 
 class UploadViewSet(viewsets.ModelViewSet):
+    parser_classes = (FormParser, MultiPartParser,)
     queryset = Upload.objects.all().order_by('upload_date')
     serializer_class = UploadSerializer
+
