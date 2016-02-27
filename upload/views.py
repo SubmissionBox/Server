@@ -18,8 +18,9 @@ def submit(request):
     if request.method == 'POST':
         form = UploadForm(request.POST, request.FILES)
         if form.is_valid():
-            newdoc = Upload(file=request.FILES['docfile'], capture_date=datetime.datetime.now())
-            newdoc.save()
+            for afile in request.FILES.getlist('docfile'):
+                newdoc = Upload(file=afile, capture_date=datetime.datetime.now())
+                newdoc.save()
 
             # Redirect to the document list after POST
             return HttpResponseRedirect(reverse('upload.views.review'))

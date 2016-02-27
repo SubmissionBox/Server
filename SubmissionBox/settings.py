@@ -129,6 +129,7 @@ BOWER_COMPONENTS_ROOT = 'components/'
 
 BOWER_INSTALLED_APPS = (
     'bootstrap#v4.0.0-alpha.2',
+    'bootstrap-fileinput',
 )
 
 # Rest
